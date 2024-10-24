@@ -8,16 +8,15 @@ public class Database {
 
     Map<String, Object> accounts = new HashMap<>();
 
-    public String createAccount(String name, double balance) {
+    public void createAccount(String name, double balance) {
         String id = name.toLowerCase().replace(" ", "_");
 
         if (accounts.containsKey(id)) {
-            return "Account already exists";
+            return;
         }
         // convert id to numeric id
         int accountNumber = Integer.parseInt(String.valueOf(accounts.size() + 1));
-        accounts.put(id, new BankAccount(name, balance, accountNumber));
-        return "Account created";
+        accounts.put(id, new BankAccount(name, balance));
     }
 
     public BankAccount search(String id) {
