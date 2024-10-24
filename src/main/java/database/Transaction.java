@@ -2,6 +2,7 @@ package database;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Transaction {
@@ -21,16 +22,16 @@ public class Transaction {
     private double amount;
 
     @Column(nullable = false)
-    private LocalDateTime date;
+    private Date date;
 
-    public Transaction(BankAccount sender, BankAccount receiver, double amount) {
+    public Transaction() {
+    }
+
+    public Transaction(BankAccount sender, BankAccount receiver, double amount, Date date) {
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
-        this.date = LocalDateTime.now();
-    }
-
-    public Transaction() {
+        this.date = date;
     }
 
     public Long getId() {
@@ -61,11 +62,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
